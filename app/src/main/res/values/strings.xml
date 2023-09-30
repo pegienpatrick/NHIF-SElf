@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NHIF</string>
+
+    <string-array name="gender_options">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
