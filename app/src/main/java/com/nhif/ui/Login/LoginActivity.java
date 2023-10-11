@@ -5,11 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.nhif.R;
+import com.nhif.database.entities.User;
 import com.nhif.ui.Register.RegisterActivity;
+import com.nhif.ui.session.SessionActivity;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText emailOrIdEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +42,87 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        emailOrIdEditText = findViewById(R.id.emailOrIdEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.registerButton);
+
+        handleLogin();
+    }
+
+    private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static final DatabaseReference usersRef = database.getReference("users");
+
+    private void handleLogin() {
+
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String emailOrId = emailOrIdEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                view.setEnabled(false);
+
+                // Query users based on email
+                Query queryByEmail = usersRef.orderByChild("email").equalTo(emailOrId);
+
+                // Query users based on ID
+                Query queryById = usersRef.orderByChild("id").equalTo(emailOrId);
+
+                // Combine the queries using OR
+                Query combinedQuery = queryByEmail.getRef().startAt(emailOrId).endAt(emailOrId + "\uf8ff")
+                        .limitToFirst(1).getRef().orderByKey().startAt(emailOrId).endAt(emailOrId + "\uf8ff");
+
+                // Perform the combined query
+                combinedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // User found, handle accordingly
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                User user = snapshot.getValue(User.class);
+                                // Do something with the user
+                                if(new BCryptPasswordEncoder().matches(password,user.getPassword() ))
+                                {
+                                    Intent intent=new Intent(getApplicationContext(), SessionActivity.class);
+                                    intent.putExtra("user",user.getEmail());
+                                    startActivity(intent);
+                                }
+                                else
+                                {
+                                    passwordEditText.setError("Incorrect Password");
+                                    Toast.makeText(getBaseContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
+
+                                    view.setEnabled(true);
+                                    return;
+                                }
+                            }
+                        } else {
+                            // User not found
+                            emailOrIdEditText.setError("No User Found");
+                            Toast.makeText(getBaseContext(), "No User Found", Toast.LENGTH_SHORT).show();
+
+                            view.setEnabled(true);
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Handle errors, if any
+
+                        databaseError.toException().printStackTrace();
+                        Toast.makeText(getBaseContext(), "An error Occurred "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        view.setEnabled(true);
+                        return;
+                    }
+                });
+
+
+            }
+        });
+
     }
 }

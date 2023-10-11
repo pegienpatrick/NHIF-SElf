@@ -20,7 +20,29 @@ public class User {
 
     private String password;
 
+    public Long getDateOfBirth() {
+        return dateOfBirth;
+    }
 
+    public void setDateOfBirth(Long dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Long getNum() {
         return num;
