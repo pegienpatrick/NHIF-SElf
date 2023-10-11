@@ -26,6 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
+
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,13 +51,24 @@
 
                     >
 
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/nhif"
+                        android:layout_gravity="center"
+                        />
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/emailOrIdLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Email or ID">
+                        android:hint="Email or ID"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/emailOrIdEditText"
@@ -68,7 +81,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Password">
+                        android:hint="Password"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        app:endIconMode="password_toggle"
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passwordEditText"
