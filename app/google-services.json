@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289590865274",
+    "project_id": "nhif-72048",
+    "storage_bucket": "nhif-72048.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289590865274:android:430b751a057b9d68d5fac3",
+        "android_client_info": {
+          "package_name": "com.nhif"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkyFhkkzaTG5eglgzVBoEaNyx8LMAAnt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

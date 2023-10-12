@@ -13,6 +13,6 @@ public class SessionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
-        finish();
+        //finish();
     }
 }

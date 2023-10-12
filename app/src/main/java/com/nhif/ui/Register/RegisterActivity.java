@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -135,9 +137,11 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 //save the user
+                final Handler handler = new Handler(Looper.getMainLooper());
                 usersRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        handler.removeCallbacksAndMessages(null);
                         if (dataSnapshot.exists()) {
                             //System.out.println("Email already exists. User not saved.");
                             passwordEditText.setError("Email already Registered");
@@ -168,6 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
+                        handler.removeCallbacksAndMessages(null);
 //                        System.out.println("Error checking email existence: " + databaseError.getMessage());
                         databaseError.toException().printStackTrace();
                         Toast.makeText(RegisterActivity.this, "An Error occurred "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
@@ -176,6 +181,13 @@ public class RegisterActivity extends AppCompatActivity {
                         return;
                     }
                 });
+
+                handler.postDelayed(()->{
+                    Toast.makeText(getBaseContext(), "Connection Error. Timeout", Toast.LENGTH_SHORT).show();
+
+                    v.setEnabled(true);
+                    return;
+                },5000);
 
 
 

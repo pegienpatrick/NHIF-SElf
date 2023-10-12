@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,16 +70,20 @@ public class LoginActivity extends AppCompatActivity {
                 Query queryByEmail = usersRef.orderByChild("email").equalTo(emailOrId);
 
                 // Query users based on ID
-                Query queryById = usersRef.orderByChild("id").equalTo(emailOrId);
+//                Query queryById = usersRef.orderByChild("id").equalTo(emailOrId);
 
                 // Combine the queries using OR
-                Query combinedQuery = queryByEmail.getRef().startAt(emailOrId).endAt(emailOrId + "\uf8ff")
-                        .limitToFirst(1).getRef().orderByKey().startAt(emailOrId).endAt(emailOrId + "\uf8ff");
+//                Query combinedQuery = queryByEmail.getRef().startAt(emailOrId).endAt(emailOrId + "\uf8ff")
+//                        .limitToFirst(1).getRef().orderByKey().startAt(emailOrId).endAt(emailOrId + "\uf8ff");
 
                 // Perform the combined query
-                combinedQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+                final Handler handler = new Handler(Looper.getMainLooper());
+                queryByEmail.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        handler.removeCallbacksAndMessages(null);
                         if (dataSnapshot.exists()) {
                             // User found, handle accordingly
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -85,9 +91,15 @@ public class LoginActivity extends AppCompatActivity {
                                 // Do something with the user
                                 if(new BCryptPasswordEncoder().matches(password,user.getPassword() ))
                                 {
-                                    Intent intent=new Intent(getApplicationContext(), SessionActivity.class);
+                                    System.out.println("password correct");
+                                    Intent intent=new Intent(LoginActivity.this, SessionActivity.class);
                                     intent.putExtra("user",user.getEmail());
-                                    startActivity(intent);
+                                    LoginActivity.this.startActivity(intent);
+
+                                    Toast.makeText(getBaseContext(), "Login Successfull", Toast.LENGTH_SHORT).show();
+
+
+
                                 }
                                 else
                                 {
@@ -110,15 +122,23 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
+                        handler.removeCallbacksAndMessages(null);
                         // Handle errors, if any
 
-                        databaseError.toException().printStackTrace();
+                        System.err.println(databaseError.getMessage());
                         Toast.makeText(getBaseContext(), "An error Occurred "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
                         view.setEnabled(true);
                         return;
                     }
                 });
+
+                handler.postDelayed(()->{
+                    Toast.makeText(getBaseContext(), "Connection Error. Timeout", Toast.LENGTH_SHORT).show();
+
+                    view.setEnabled(true);
+                    return;
+                },5000);
 
 
             }

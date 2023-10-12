@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Email or ID"
+                        android:hint="Email"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                         >
@@ -73,7 +73,9 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/emailOrIdEditText"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
