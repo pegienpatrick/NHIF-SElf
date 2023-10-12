@@ -15,6 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -42,6 +43,14 @@ dependencies {
     implementation 'org.springframework.security:spring-security-crypto:5.5.0'
 
     implementation 'commons-logging:commons-logging:1.2'
+
+
+    implementation 'com.google.android.material:material:1.10.0'
+
+
+
+
+
 
 
 }
