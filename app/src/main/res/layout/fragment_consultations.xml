@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Consult With Admin"
+                    android:text="Chat With Us"
                     android:textColor="#132558"
                     android:textSize="15sp"
 
