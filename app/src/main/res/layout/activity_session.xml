@@ -24,15 +24,18 @@
     app:cardElevation="4dp"
         >
     <!-- Add a TabLayout at the bottom of the screen -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
 
-        app:tabMode="scrollable"
-        app:tabGravity="fill"
-        app:tabIndicatorHeight="0dp" />
+            app:tabGravity="start"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/TabLayoutStyle"
+
+            />
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
