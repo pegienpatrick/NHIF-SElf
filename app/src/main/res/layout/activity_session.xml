@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+    android:background="?attr/colorPrimary"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <!-- Add a ViewPager to host the fragments -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -20,7 +28,7 @@
         android:id="@+id/bottomer"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:layout_marginTop="8dp"
+
     app:cardElevation="4dp"
         >
     <!-- Add a TabLayout at the bottom of the screen -->
@@ -28,7 +36,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
 
             app:tabGravity="start"
             app:tabIndicatorHeight="0dp"

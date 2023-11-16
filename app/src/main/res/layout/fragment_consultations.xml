@@ -23,25 +23,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
 
             >
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Consult With Admin"
-                android:textColor="#132558"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:padding="15dp"
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Consult With Admin"
+                    android:textColor="#132558"
+                    android:textSize="15sp"
 
 
-                />
+                    />
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
@@ -71,15 +74,18 @@
                 <RelativeLayout
                     android:id="@+id/sendMessage"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:layout_alignParentBottom="true"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+
                     >
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/lastNameLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_toLeftOf="@id/send"
 
                         android:hint="Message"
@@ -96,13 +102,16 @@
                     <ImageView
                         android:id="@+id/send"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
 
                         app:srcCompat="@android:drawable/ic_menu_send"
-                        android:foregroundGravity="center"
+
                         android:scaleType="centerCrop"
                         android:padding="5dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
                         />
 
                 </RelativeLayout>
