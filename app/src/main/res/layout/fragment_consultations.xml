@@ -79,7 +79,7 @@
                     android:layout_alignParentBottom="true"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
 
                     >
                     <com.google.android.material.textfield.TextInputLayout
@@ -91,12 +91,17 @@
                         android:hint="Message"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
                         >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/lastNameEditText"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageView
