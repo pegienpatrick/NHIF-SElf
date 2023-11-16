@@ -154,10 +154,15 @@ public class ProfileFragment extends Fragment {
 
             user.setPassword(new BCryptPasswordEncoder().encode(password));
 
-            usersRef.child(userKey).setValue(user);
-            Toast.makeText(getContext(), "Password Changed Successfully", Toast.LENGTH_SHORT).show();
+            try {
+                usersRef.child(userKey).setValue(user);
+                Toast.makeText(getContext(), "Password Changed Successfully", Toast.LENGTH_SHORT).show();
 
-            v.setEnabled(true);
+                v.setEnabled(true);
+            }catch (Exception es)
+            {
+                es.printStackTrace();
+            }
 
         });
 
