@@ -42,6 +42,28 @@ public class DatePickerUtils {
         });
     }
 
+    public DatePickerUtils(EditText dateEditText,Long date) {
+
+        calendar = Calendar.getInstance();
+        calendar.setTime(new Date(date));
+        this.dateEditText=dateEditText;
+        dateEditText.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
+        dateEditText.setFocusable(false);
+        dateEditText.setClickable(true);
+        hasChanged=false;
+
+        updateEditText();
+
+
+        dateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+
+            }
+        });
+    }
+
     private void showDatePickerDialog() {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -53,10 +75,7 @@ public class DatePickerUtils {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-                        String selectedDate = dateFormat.format(calendar.getTime());
-                        dateEditText.setText(selectedDate);
-                        dateEditText.setTextSize(12);
+                        updateEditText();
                         hasChanged=true;
                         if(onchange!=null)
                         {
@@ -69,6 +88,13 @@ public class DatePickerUtils {
         );
 
         datePickerDialog.show();
+    }
+
+    private void updateEditText() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String selectedDate = dateFormat.format(calendar.getTime());
+        dateEditText.setText(selectedDate);
+        dateEditText.setTextSize(12);
     }
 
     public Date getMinDate() {

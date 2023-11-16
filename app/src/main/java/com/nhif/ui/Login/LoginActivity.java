@@ -50,7 +50,18 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
 
+
+
         handleLogin();
+
+        Boolean help=false;
+
+//        help=true;
+
+        if(help) {
+            emailOrIdEditText.setText("pats@gmail.com");
+            passwordEditText.setText("123");
+        }
     }
 
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
