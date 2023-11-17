@@ -1,7 +1,19 @@
 package com.nhif.database.entities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.nhif.utils.RunnableWithParam;
+
+
+import java.io.ByteArrayOutputStream;
 
 @Entity
 public class User {
@@ -19,6 +31,8 @@ public class User {
     private String gender;
 
     private String password;
+
+    private String profile_picture;
 
     public Long getDateOfBirth() {
         return dateOfBirth;
@@ -91,4 +105,49 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+//    public Bitmap getProfile_picture() {
+//        return profile_picture;
+//    }
+
+    public void setProfile_picture(Bitmap profile_picture,Runnable success,Runnable error) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
+
+        // Convert Bitmap to a byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        profile_picture.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageData = baos.toByteArray();
+
+
+        UploadTask uploadTask = storageRef.child("profile"+getEmail()+".jpg").putBytes(imageData);
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            if(success!=null)
+                success.run();
+
+        }).addOnFailureListener(e -> {
+            if(error!=null)
+                error.run();
+
+        });
+
+    }
+
+
+    public void retrieveProfilePicture(RunnableWithParam<Bitmap> success, Runnable error) {
+        // Assuming 'storageRef' is a reference to your Firebase Storage location
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
+
+        storageRef.child("profile" + getEmail() + ".jpg").getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            if (success != null) {
+                success.run(bitmap);
+            }
+        }).addOnFailureListener(e -> {
+            if (error != null) {
+                error.run();
+            }
+        });
+    }
+
+
 }

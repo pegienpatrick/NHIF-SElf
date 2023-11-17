@@ -2,6 +2,7 @@ package com.nhif.ui.session.profile;
 
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -108,7 +109,7 @@ public class ProfileFragment extends Fragment {
         updateInfoButton.setOnClickListener((v)->{
 
             v.setEnabled(false);
-            User user=new User();
+
             user.setFirstName(firstNameEditText.getText().toString());
             user.setEmail(emailEditText.getText().toString());
             user.setId(idEditText.getText().toString());
@@ -116,6 +117,8 @@ public class ProfileFragment extends Fragment {
             user.setPhone(phoneEditText.getText().toString());
             user.setDateOfBirth(dob.getMinDate().getTime());
             user.setGender(genderSpinner.getSelectedItem().toString());
+
+//            user.setProfile_picture(BitmapFactory.decodeResource(getResources(),R.drawable.ic_action_account_circle),nu);
 
             try {
                 usersRef.child(userKey).setValue(user);
