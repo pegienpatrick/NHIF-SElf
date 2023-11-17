@@ -45,7 +45,7 @@ public class ConsultationFragment extends Fragment {
         sendMessageLayout = view.findViewById(R.id.sendMessage);
         addNewWatchlistButton = view.findViewById(R.id.add_new_watchlist);
 
-        sendImageView.setOnClickListener(()->{
+        sendImageView.setOnClickListener((v)->{
             sendMessage(lastNameEditText.getText().toString());
         });
 
@@ -55,7 +55,7 @@ public class ConsultationFragment extends Fragment {
     private void sendMessage(String toString) {
 
 //        BotpressChat.getInstance()
-        Botp
+
 
     }
 
