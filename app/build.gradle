@@ -3,6 +3,13 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+ext {
+    geckoviewChannel = "nightly"
+    geckoviewVersion = "70.0.20190712095934"
+}
+
+
+
 android {
     namespace 'com.nhif'
     compileSdk 34
@@ -56,6 +63,19 @@ dependencies {
 //    implementation 'com.botpress:botpress-sdk-android:1.0.0'
 //
 
+//    implementation 'org.mozilla.geckoview:geckoview:96.0.0'
+
+//    implementation "org.mozilla.geckoview:geckoview-${geckoview_channel}:${geckoview_version}"
+
+
+
+
+    implementation ("org.mozilla.geckoview:geckoview-${geckoviewChannel}:${geckoviewVersion}"){
+
+            exclude group: 'com.android.support', module: 'support-v4'
+            // Add any other exclusions or customizations as needed
+
+    }
 
 
 

@@ -1,11 +1,17 @@
 package com.nhif.ui.session.consultations;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,6 +23,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhif.R;
+
+import org.mozilla.geckoview.GeckoRuntime;
+import org.mozilla.geckoview.GeckoSession;
+import org.mozilla.geckoview.GeckoView;
+
+import java.net.URL;
 
 
 public class ConsultationFragment extends Fragment {
@@ -33,6 +45,8 @@ public class ConsultationFragment extends Fragment {
     private FloatingActionButton addNewWatchlistButton;
 
     private WebView botWebview;
+
+    private GeckoView botgeckoview;
 
 
 
@@ -54,17 +68,67 @@ public class ConsultationFragment extends Fragment {
 //            sendMessage(lastNameEditText.getText().toString());
 //        });
             botWebview=view.findViewById(R.id.botWebview);
+
             configureWebview();
+
+//        botgeckoview=view.findViewById(R.id.geckoview);
+//        try {
+//            configureGeckoView();
+//        }catch (Exception es)
+//        {
+//            es.printStackTrace();
+//        }
 
 
 
         return view;
     }
 
+    private void configureGeckoView() {
+        GeckoSession session = new GeckoSession();
+        GeckoRuntime runtime = GeckoRuntime.create(this.getContext());
+
+        session.open(runtime);
+        botgeckoview.setSession(session);
+        session.loadUri(botpressServerUrl);
+
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
     private void configureWebview() {
 
         botWebview.getSettings().setJavaScriptEnabled(true);
+
+        botWebview.setWebViewClient(new WebViewClient());
+
+
+        botWebview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                // Log console messages
+                Log.d("WebView", consoleMessage.message());
+                return false;
+            }
+
+
+
+
+        });
+
+//        botWebview.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                // Ensure this method returns false to allow WebView to handle the URL
+//                System.out.println(request);
+//                return false;
+//            }
+//        });
+
+
         botWebview.loadUrl(botpressServerUrl);
+
+
+
 
     }
 
