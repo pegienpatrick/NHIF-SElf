@@ -53,7 +53,9 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'com.botpress:chat-sdk:1.1.0'
+//    implementation 'com.botpress:botpress-sdk-android:1.0.0'
+//
+
 
 
 

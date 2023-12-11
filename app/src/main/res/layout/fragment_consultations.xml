@@ -55,14 +55,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@id/sendMessage"
+
                     >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/messagesRecycleView"
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/messagesRecycleView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        />-->
+
+                    <WebView
+                        android:id="@+id/botWebview"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+
                         />
+
 
                 </LinearLayout>
 
@@ -71,55 +79,55 @@
 
 
 
-                <RelativeLayout
-                    android:id="@+id/sendMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="2dp"
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/sendMessage"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_marginBottom="2dp"-->
 
-                    >
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lastNameLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/send"
+<!--                    >-->
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/lastNameLayout"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_toLeftOf="@id/send"-->
 
-                        android:hint="Message"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+<!--                        android:hint="Message"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
 
-                        android:paddingTop="0dp"
-                        android:paddingBottom="0dp"
-                        >
+<!--                        android:paddingTop="0dp"-->
+<!--                        android:paddingBottom="0dp"-->
+<!--                        >-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/lastNameEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="8dp"
-                            />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/lastNameEditText"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingTop="8dp"-->
+<!--                            android:paddingBottom="8dp"-->
+<!--                            />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                    <ImageView
-                        android:id="@+id/send"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
+<!--                    <ImageView-->
+<!--                        android:id="@+id/send"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_alignParentEnd="true"-->
 
-                        app:srcCompat="@android:drawable/ic_menu_send"
+<!--                        app:srcCompat="@android:drawable/ic_menu_send"-->
 
-                        android:scaleType="centerCrop"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:gravity="center_vertical"
-                        android:layout_centerVertical="true"
-                        />
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:padding="5dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        />-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
 
             </RelativeLayout>
 

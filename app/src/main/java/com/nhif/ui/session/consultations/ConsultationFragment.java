@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.nhif.R;
 
 public class ConsultationFragment extends Fragment {
 
+    private String botpressServerUrl = "https://mediafiles.botpress.cloud/cea3660a-3f84-4f1c-8797-a3d813d2539c/webchat/bot.html";
+
     // Declare views
     private TextView titleTextView;
     private RecyclerView messagesRecyclerView;
@@ -28,6 +31,8 @@ public class ConsultationFragment extends Fragment {
     private ImageView sendImageView;
     private RelativeLayout sendMessageLayout;
     private FloatingActionButton addNewWatchlistButton;
+
+    private WebView botWebview;
 
 
 
@@ -38,23 +43,37 @@ public class ConsultationFragment extends Fragment {
 
         // Initialize views
         titleTextView = view.findViewById(R.id.title);
-        messagesRecyclerView = view.findViewById(R.id.messagesRecycleView);
-        lastNameLayout = view.findViewById(R.id.lastNameLayout);
-        lastNameEditText = view.findViewById(R.id.lastNameEditText);
-        sendImageView = view.findViewById(R.id.send);
-        sendMessageLayout = view.findViewById(R.id.sendMessage);
-        addNewWatchlistButton = view.findViewById(R.id.add_new_watchlist);
+//        messagesRecyclerView = view.findViewById(R.id.messagesRecycleView);
+//        lastNameLayout = view.findViewById(R.id.lastNameLayout);
+//        lastNameEditText = view.findViewById(R.id.lastNameEditText);
+//        sendImageView = view.findViewById(R.id.send);
+//        sendMessageLayout = view.findViewById(R.id.sendMessage);
+//        addNewWatchlistButton = view.findViewById(R.id.add_new_watchlist);
+//
+//        sendImageView.setOnClickListener((v)->{
+//            sendMessage(lastNameEditText.getText().toString());
+//        });
+            botWebview=view.findViewById(R.id.botWebview);
+            configureWebview();
 
-        sendImageView.setOnClickListener((v)->{
-            sendMessage(lastNameEditText.getText().toString());
-        });
+
 
         return view;
     }
 
+    private void configureWebview() {
+
+        botWebview.getSettings().setJavaScriptEnabled(true);
+        botWebview.loadUrl(botpressServerUrl);
+
+    }
+
     private void sendMessage(String toString) {
 
+
+
 //        BotpressChat.getInstance()
+//        Botpress botpress = new Botpress(botpressServerUrl);
 
 
     }
