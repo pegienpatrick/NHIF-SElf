@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String firstName = firstNameEditText.getText().toString();
                 String lastName = lastNameEditText.getText().toString();
                 String id = idEditText.getText().toString();
-                String email = emailEditText.getText().toString();
+                String email = emailEditText.getText().toString().trim();
                 String phone = phoneEditText.getText().toString();
                 String dateOfBirth = dateOfBirthEditText.getText().toString();
                 String gender = genderSpinner.getSelectedItem().toString();
@@ -154,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // Email doesn't exist, save the user
                             User user=new User();
                             user.setFirstName(firstName);
-                            user.setEmail(email);
+                            user.setEmail(email.trim());
                             user.setId(id);
                             user.setLastName(lastName);
                             user.setPhone(phone);

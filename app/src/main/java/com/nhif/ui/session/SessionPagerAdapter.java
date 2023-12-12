@@ -29,10 +29,10 @@ public class SessionPagerAdapter extends FragmentPagerAdapter {
                 return new BillingsFragment();
             case 2:
                 return new ConsultationFragment();
-            case 3:
-                return new AppointmentsFragment();
+//            case 3:
+//                return new AppointmentsFragment();
 
-            case 4:
+            case 3:
                 return new ProfileFragment();
 //                return new DescendantsFragment();
 //            case 5:
@@ -45,6 +45,6 @@ public class SessionPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Number of tabs
-        return 5; // Adjust this based on the number of tabs
+        return 4; // Adjust this based on the number of tabs
     }
 }

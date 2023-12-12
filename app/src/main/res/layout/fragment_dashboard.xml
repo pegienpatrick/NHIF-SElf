@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:padding="20dp"
 
-                    android:text="You can also book a appointment with Nhif through us. Feel free to book an appointment in case of anything or incase you want to collect your card or add dependants"
+                    android:text="You can  ask us anything and we weill be more than willing to answer you or help you in any way possible."
                     android:textColor="#FDFCFC"
                     android:textSize="15sp" />
             </androidx.cardview.widget.CardView>

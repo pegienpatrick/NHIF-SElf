@@ -43,9 +43,9 @@ public class SessionActivity extends AppCompatActivity {
 
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_attach_money).setText("Billings");
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_action_chat).setText("Consultation");
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_date_range).setText("Appointments");
+//        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_date_range).setText("Appointments");
 //        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_people).setText("Dependants");
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_action_account_circle).setText("Profile");
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_action_account_circle).setText("Profile");
 
 
 

@@ -59,8 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 //        help=true;
 
         if(help) {
-            emailOrIdEditText.setText("pats@gmail.com");
-            passwordEditText.setText("123");
+
         }
     }
 
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailOrId = emailOrIdEditText.getText().toString();
+                String emailOrId = emailOrIdEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString();
                 view.setEnabled(false);
 
