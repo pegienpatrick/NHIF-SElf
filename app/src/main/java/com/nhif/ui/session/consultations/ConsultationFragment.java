@@ -2,14 +2,18 @@ package com.nhif.ui.session.consultations;
 
 
 import android.annotation.SuppressLint;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -69,7 +73,8 @@ public class ConsultationFragment extends Fragment {
 //        });
             botWebview=view.findViewById(R.id.botWebview);
 
-            configureWebview();
+            configNew();
+//            configureWebview();
 
 //        botgeckoview=view.findViewById(R.id.geckoview);
 //        try {
@@ -82,6 +87,13 @@ public class ConsultationFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void configNew() {
+        botWebview.setWebViewClient(new WebViewClient());
+
+        // Load a URL
+        botWebview.loadUrl(botpressServerUrl);
     }
 
     private void configureGeckoView() {
@@ -97,7 +109,18 @@ public class ConsultationFragment extends Fragment {
     @SuppressLint("SetJavaScriptEnabled")
     private void configureWebview() {
 
-        botWebview.getSettings().setJavaScriptEnabled(true);
+//        botWebview.getSettings().setJavaScriptEnabled(true);
+
+        WebSettings webSettings = botWebview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
+
 
         botWebview.setWebViewClient(new WebViewClient());
 
@@ -106,9 +129,18 @@ public class ConsultationFragment extends Fragment {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 // Log console messages
+
                 Log.d("WebView", consoleMessage.message());
-                return false;
+                System.out.println(consoleMessage.messageLevel());
+                System.out.println("line : "+consoleMessage.lineNumber());
+                System.out.println("source : "+consoleMessage.sourceId());
+
+                return true;
             }
+
+
+
+
 
 
 
@@ -117,17 +149,35 @@ public class ConsultationFragment extends Fragment {
 
         });
 
-//        botWebview.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-//                // Ensure this method returns false to allow WebView to handle the URL
-//                System.out.println(request);
-//                return false;
-//            }
-//        });
+        botWebview.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                // Ensure this method returns false to allow WebView to handle the URL
+                System.out.println(" This is a request "+request);
+                return true;
+            }
 
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+//                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+            }
+
+
+        });
+
+
+//        botWebview.loadUrl(botpressServerUrl);
+        botWebview.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
 
         botWebview.loadUrl(botpressServerUrl);
+
 
 
 
