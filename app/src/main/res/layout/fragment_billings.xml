@@ -1,6 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:padding="16dp">
 
-</LinearLayout>
+    <!-- CardView for Payment Options -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textPaymentOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#198919"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Options"
+                android:textColor="#F8F5F5"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textMpesa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M-PESA: Use PayBill Number 200222 and your ID as the Account Number."
+                android:textColor="#F8F5F5" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Various Banks -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textVariousBanks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textPaymentOptions"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ACC1"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Various Banks: Pay at Equity Bank, NBK, KCB, or Cooperative Bank with NHIF banking slips." />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Bonga Points -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textBongaPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textVariousBanks"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7CB342"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bonga Points: Redeem using *126#, Lipa Na Bonga, PayBill 200222, ID as Account Number." />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Monthly Contribution -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textMonthlyContribution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textBongaPoints"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0000FF"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Contribution: KES 500 by 9th of the following month to avoid penalties."
+                android:textColor="#F8F5F5" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Additional Notes -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/textAdditionalNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textMonthlyContribution"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note: Information subject to change. Contact NHIF for more details." />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView for Contact Information -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAdditionalNotes"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:radius="8dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textContactInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact NHIF: 0800720601 or customercare@nhif.or.ke" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

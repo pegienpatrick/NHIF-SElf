@@ -113,6 +113,8 @@ public class ConsultationFragment extends Fragment {
 
 
 
+
+
         });
 
 //        botWebview.setWebViewClient(new WebViewClient() {
