@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.upstream.cache.Cache;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -91,10 +93,33 @@ public class ConsultationFragment extends Fragment {
 
     private void configNew() {
         botWebview.setWebViewClient(new WebViewClient());
+        // Get the settings for the WebView
+        WebSettings webSettings = botWebview.getSettings();
+
+        // Enable JavaScript (if not already enabled)
+        webSettings.setJavaScriptEnabled(true);
+
+        // Enable CSS (if not already enabled)
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
         // Load a URL
         botWebview.loadUrl(botpressServerUrl);
+
+
+
+
+
     }
+
+    private String[] avoids={
+            "\uD83D\uDCA1 Make sure to open the \"❓ Answering Questions\" workflow to follow along this example.",
+            "Alright, let's see how your chatbot can answer questions based on custom knowledge bases.\n" +
+                    "\n" +
+                    "In this example, we added one Knowledge Base and provided a few website pages from the official Botpress website.",
+            "Now, try asking me \"What is Botpress?\" to see question answering in action."
+    };
 
     private void configureGeckoView() {
         GeckoSession session = new GeckoSession();
